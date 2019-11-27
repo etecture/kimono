@@ -1,6 +1,6 @@
 {
   "name": "@kimono/xpty",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "Provides xterm.js and node-pty helpers for react electron apps",
   "license": "MIT",
   "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
