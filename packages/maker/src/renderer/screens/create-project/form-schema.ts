@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { KeyValueItem } from '@loopmode/xpty';
+import { KeyValueItem } from '@kimono/xpty';
 
 export interface FormValues {
   cwd: string;

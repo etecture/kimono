@@ -1,20 +1,11 @@
 {
-  "extends": "../../node_modules/electron-webpack/tsconfig-base.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "jsx": "react",
-    "baseUrl": ".",
-    "paths": {
-      "renderer/*": [
-        "src/renderer/*"
-      ]
-    },
-    "allowSyntheticDefaultImports": true,
+    "rootDir": "src",
+    "outDir": "lib",
+    "tsBuildInfoFile": ".tsbuildinfo"
   },
   "include": [
     "src"
-  ],
-  "exclude": [
-    "lib",
-    "dist"
   ]
 }

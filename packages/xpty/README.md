@@ -1,4 +1,4 @@
-# @loopmode/pty
+# @kimono/xpty
 
 A react component and some helpers for building terminals in electron apps.  
 Based on [`xterm`](https://www.npmjs.com/package/xterm) and [`node-pty`](https://www.npmjs.com/package/node-pty).
@@ -32,11 +32,30 @@ There are multiple ways to create a `pty`.
 
 There is an `XTerminal` component that expects an existing `pty` as a prop. You're free to choose how and where you create that, which depends on your use case.
 
+### Example: `usePty`
+
+This simpler variant allows you to simply `execute()` some CLI command.
+
+```tsx
+import React from 'react';
+import { XTerminal, usePty } from '@kimono/xpty';
+
+export const Example = () => {
+  const { pty, execute } = usePty();
+  return (
+    <>
+      <XTerminal pty={pty}>
+      <button onClick={() => execute('ls -lah')}>Execute</button>
+    </>
+  )
+}
+```
+
 ### Example: `usePtyCommand`
 
 ```tsx
 import React from 'react';
-import { XTerminal, usePtyCommand } from '@loopmode/xpty';
+import { XTerminal, usePtyCommand } from '@kimono/xpty';
 
 export const Example = () => {
   const { pty, execute } = usePtyCommand({
@@ -74,26 +93,6 @@ export const ExampleSidebarItem = () => {
   return (
     <>
       <button onClick={execute}>Execute</button>
-    </>
-  )
-}
-```
-
-### Example: `usePty`
-
-This simpler variant allows you to simply `execute()` some CLI command.
-
-```tsx
-import React from 'react';
-import { XTerminal, usePty } from '@loopmode/xpty';
-
-export const Example = () => {
-  const { pty, execute } = usePty();
-  const run = () => execute('ls -lah')
-  return (
-    <>
-      <XTerminal pty={pty}>
-      <button onClick={run}>Execute</button>
     </>
   )
 }

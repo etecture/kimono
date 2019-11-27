@@ -7,7 +7,7 @@ import { FormValues } from '../form-schema';
 import { IPty } from 'node-pty';
 import { ButtonGroup } from 'renderer/components/button-group/button-group';
 import { doneMessage } from '@kimono/generator-electron-app/lib/utils/doneMessage';
-import XTerminal from '@loopmode/xpty';
+import XTerminal from '@kimono/xpty';
 import { createCLICommand } from '../utils';
 import { forwardSlashes } from 'renderer/utils/slashes';
 import { CollapsibleCard } from 'renderer/components/collapsible/collapsible-card';

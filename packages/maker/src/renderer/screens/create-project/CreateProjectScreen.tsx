@@ -1,7 +1,7 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import { useHistory, Route } from 'react-router';
-import { usePty } from '@loopmode/xpty';
+import { usePty } from '@kimono/xpty';
 
 import { Screen } from 'renderer/components/screen/Screen';
 
