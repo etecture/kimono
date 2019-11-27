@@ -1,6 +1,9 @@
-# @kimono/create-electron-app-workspace
+# @kimono/workspace
 
-Monorepo for `@kimono/create-electron-app` and its packages.
+Monorepo for the `@kimono` packages.
+
+The goal of this project is to provide general tools and helpers for working with monorepos.
+Currently, the focus is on electron apps, but will become broader in near feature.
 
 ## Installation
 
@@ -9,8 +12,8 @@ This project uses yarn workspaces. Development is incompatible with npm and you 
 Install the dependencies in the project root folder:
 
 ```
-git clone git@github.com:loopmode/create-electron-app.git
-cd create-electron-app
+git clone git@github.com:etecture/kimono.git
+cd kimono
 yarn
 ```
 
@@ -27,3 +30,19 @@ Like `yarn build`, but wipes the output folders and deletes incremental compilat
 ### `yarn watch`
 
 Like `yarn build`, but watches the sources and recompiles after changes.
+
+### `yarn clean`
+
+Removes all build artifacts, e.g. `lib` folders and `.tsbuildinfo` files.
+
+### `yarn lint`
+
+Runs eslint on all packages.
+
+### `yarn rebuild-native`
+
+Compiles native modules for the local electron version.
+
+### `yarn maker`
+
+Launches the development server for the `@kimono/maker` app.
