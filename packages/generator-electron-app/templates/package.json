@@ -1,0 +1,55 @@
+{
+  "private": true,
+  "name": "<%= projectName.substr(projectName.lastIndexOf('./') + 2) %>",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "rebuild-native": "electron-builder install-app-deps"
+  },
+  "resolutions": {
+    "js-yaml": "3.13.1"
+  },
+  "dependencies": {<%if (react) { %><%if (typescript) { %>
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "^16.8.6",<% } else { %>
+    "prop-types": "^15.7.2",<% } %>
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.8.3",<% } %>
+    "source-map-support": "^0.5.12"<%if (vue) { %>,
+    "vue": "^2.6.0"<% } %>
+  },
+  "devDependencies": {<%if (react) { %>
+    "@babel/preset-react": "^7.0.0",<% } %><%if (vue && eslint && prettier) { %>
+    "@vue/eslint-config-prettier": "^5.0.0",<% } %><%if (typescript) { %>
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",<% } %>
+    "electron": "5.0.6",
+    "electron-builder": "^21.0.11",
+    "electron-webpack": "^2.7.4",<%if (eslint) { %>
+    "electron-webpack-eslint": "^5.0.1",<% } %><%if (typescript) { %>
+    "electron-webpack-ts": "^3.2.0",<% } %><%if (vue) { %>
+    "electron-webpack-vue": "^2.3.0",<% } %><%if (ejs) { %>
+    "ejs": "^2.6.2",
+    "ejs-html-loader": "^4.0.1",<% } %><%if (eslint) { %>
+    "eslint-loader": "^3.0.2",<% } %><%if (prettier) { %>
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.0",<% } %><%if (eslint && react) { %>
+    "eslint-plugin-react": "^7.12.4",<% } %><%if (eslint && vue) { %>
+    "eslint-plugin-vue": "^5.2.3",<% } %><%if (less) { %>
+    "less": "^3.10.1",
+    "less-loader": "^5.0.0",<% } %><%if (nunjucks) { %>
+    "nunjucks": "^3.2.0",
+    "nunjucks-loader": "^3.0.0",<% } %><%if (sass) { %>
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.2.0",<% } %><%if (prettier) { %>
+    "prettier": "^1.18.2",<% } %><%if (typescript) { %>
+    "typescript": "^3.5.3",<% } %>
+    "webpack": "~4.35.3"<%if (notifications) { %>,
+    "webpack-build-notifier": "^1.0.3"<% } %>
+  }
+}

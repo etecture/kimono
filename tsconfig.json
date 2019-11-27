@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "newLine": "LF",
+    "strict": true,
+    "composite": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "target": "es2015",
+    "module": "commonjs",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noLib": false,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "jsx": "react",
+    "lib": [
+      "es6",
+      "dom"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "lib",
+    "**/*.spec.ts"
+  ]
+}

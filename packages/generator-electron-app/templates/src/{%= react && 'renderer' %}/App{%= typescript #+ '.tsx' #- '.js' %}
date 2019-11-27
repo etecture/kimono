@@ -1,0 +1,51 @@
+import electron from 'electron';
+
+import React from 'react';
+import { hot } from 'react-hot-loader/root';
+
+import './App<%= sass ? '.scss' : less ? '.less' : '.css'%>';
+
+function App() {
+  return (
+    <div className="App empty">
+      <h5 className="empty-title">Welcome to your new project!</h5>
+      <p className="empty-subtitle">
+        Edit <code>src/renderer/App.js</code> to get started
+      </p>
+      <div className="empty-action">
+        <button
+          className="btn btn-primary"
+          onClick={() =>
+            electron.shell.openExternal('https://webpack.electron.build')
+          }
+        >
+          Documentation
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={() =>
+            electron.shell.openExternal('https://electron.atom.io/docs/')
+          }
+        >
+          Electron
+        </button>
+        <br />
+        <ul className="breadcrumb">
+          <li className="breadcrumb-item">
+            electron-webpack v{require('electron-webpack/package.json').version}
+          </li>
+          <li className="breadcrumb-item">
+            electron v{require('electron/package.json').version}
+          </li>
+        </ul>
+      </div>
+
+      <p className="footer">
+        This intitial landing page can be easily removed from{' '}
+        <code>src/renderer/index.js</code>.
+      </p>
+    </div>
+  );
+}
+
+export default hot(App);

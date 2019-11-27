@@ -1,0 +1,40 @@
+{
+  "licenseTypes": [
+    {
+      "name": "GNU AGPLv3",
+      "description": "Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.",
+      "url": "https: //choosealicense.com/licenses/agpl-3.0/"
+    },
+    {
+      "name": "GNU GPLv3",
+      "description": "Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.",
+      "url": "https: //choosealicense.com/licenses/gpl-3.0/"
+    },
+    {
+      "name": "GNU LGPLv3",
+      "description": "Permissions of this copyleft license are conditioned on making available complete source code of licensed works and modifications under the same license or the GNU GPLv3. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. However, a larger work using the licensed work through interfaces provided by the licensed work may be distributed under different terms and without source code for the larger work.",
+      "url": "https: //choosealicense.com/licenses/lgpl-3.0/"
+    },
+    {
+      "name": "Mozilla Public License 2.0",
+      "description": "Permissions of this weak copyleft license are conditioned on making available source code of licensed files and modifications of those files under the same license (or in certain cases, one of the GNU licenses). Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. However, a larger work using the licensed work may be distributed under different terms and without source code for files added in the larger work.",
+      "url": "https: //choosealicense.com/licenses/mpl-2.0/"
+    },
+    {
+      "name": "Apache License 2.0",
+      "description": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+      "url": "https: //choosealicense.com/licenses/apache-2.0/"
+    },
+    {
+      "name": "MIT License",
+      "description": "A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.",
+      "url": "https: //choosealicense.com/licenses/mit/"
+    },
+    {
+      "name": "The Unlicense",
+      "description": "A license with no conditions whatsoever which dedicates works to the public domain. Unlicensed works, modifications, and larger works may be distributed under different terms and without source code.",
+      "url": "https: //choosealicense.com/licenses/unlicense/"
+    }
+  ],
+  "description": "\nA list of license types with description and URL, based on https://choosealicense.com/licenses/\n  Generated via:\n  \n  JSON.stringify($$('.license-overview-heading').map(el => {\n \t  return {\n \t    name: el.querySelector('.license-overview-name').innerText,\n \t    description:el.querySelector('.license-overview-description').innerText,\n \t    url: el.querySelector('.license-overview-name a').href\n \t  }\n  }))\n",
+}

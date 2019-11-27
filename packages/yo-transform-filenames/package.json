@@ -1,0 +1,49 @@
+{
+  "version": "0.1.6",
+  "name": "@kimono/yo-transform-filenames",
+  "description": "Template logic for filenames",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:etecture/kimono.git",
+    "directory": "packages/yo-transform-filenames"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "clean": "rm -rf lib && rm -f .tsbuildinfo",
+    "rebuild": "yarn clean && yarn build",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "ejs",
+    "templates",
+    "conditional",
+    "filename",
+    "filesystem",
+    "yo",
+    "generator"
+  ],
+  "dependencies": {
+    "@types/ejs": "^2.6.3",
+    "@types/fs-extra": "^8.0.0",
+    "@types/gulp-rename": "^0.0.33",
+    "ejs": "^2.6.2",
+    "fs-extra": "^8.1.0",
+    "gulp-rename": "1.2.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  },
+  "gitHead": "5991ea486315401838eea5ddbacab695b8c3137e"
+}

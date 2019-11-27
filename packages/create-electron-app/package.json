@@ -1,0 +1,32 @@
+{
+  "name": "@kimono/create-electron-app",
+  "version": "0.3.8",
+  "main": "lib/index.js",
+  "bin": "lib/index.js",
+  "license": "MIT",
+  "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:etecture/kimono.git",
+    "directory": "packages/create-electron-app"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm -rf lib && rm -f .tsbuildinfo",
+    "rebuild": "yarn clean && yarn build",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "initializer",
+    "electron",
+    "webpack"
+  ],
+  "dependencies": {
+    "@kimono/generator-electron-app": "^0.3.8"
+  },
+  "gitHead": "5991ea486315401838eea5ddbacab695b8c3137e"
+}

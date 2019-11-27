@@ -1,0 +1,60 @@
+{
+  "name": "@kimono/xpty",
+  "version": "0.5.7",
+  "description": "Provides xterm.js and node-pty helpers for react electron apps",
+  "license": "MIT",
+  "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:etecture/kimono.git",
+    "directory": "packages/xpty"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "lib/*"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rm .tsbuildinfo -f && rm -rf ./lib/*",
+    "rebuild": "yarn clean && yarn build",
+    "lint": "eslint src --ext .ts,.tsx",
+    "prepublishOnly": "yarn lint && yarn rebuild"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "node-pty": "^0.9.0",
+    "shortid": "^2.2.15",
+    "tree-kill": "^1.2.1",
+    "xterm": "^4.2.0",
+    "xterm-addon-fit": "^0.3.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.6"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/node": "^12.12.11",
+    "@types/react": "^16.9.2",
+    "@types/shortid": "^0.0.29",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint": "^6.6.0",
+    "eslint-plugin-react": "^7.16.0",
+    "typescript": "^3.7.2"
+  },
+  "keywords": [
+    "xterm",
+    "node-pty",
+    "react",
+    "electron",
+    "pty",
+    "cli",
+    "command",
+    "shell",
+    "terminal"
+  ]
+}

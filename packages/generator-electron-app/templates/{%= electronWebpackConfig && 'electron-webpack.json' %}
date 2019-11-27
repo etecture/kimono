@@ -1,0 +1,9 @@
+{
+  <%if (react) { %>"whiteListedModules": ["react-hot-loader"],<% } %>
+  "main": {
+    "webpackConfig": "webpack.main.config.js"
+  },
+  "renderer": {
+    "webpackConfig": "webpack.renderer.config.js"
+  }
+}

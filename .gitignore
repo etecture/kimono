@@ -1,0 +1,9 @@
+.DS_Store
+dist/
+node_modules/
+thumbs.db
+.idea/
+*.log
+**/.tsbuildinfo
+/foo
+/desktop.ini

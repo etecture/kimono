@@ -1,0 +1,11 @@
+{
+  "version": "0.0.2",
+  "private": true,
+  "name": "@kimono/eslint-config-electron-webpack",
+  "main": ".eslintrc.js",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint": "^6.6.0"
+  }
+}

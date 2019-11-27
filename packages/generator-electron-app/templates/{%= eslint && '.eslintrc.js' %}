@@ -1,0 +1,50 @@
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    node: true
+  },
+  extends: [
+    'eslint:recommended'<% if (react) { %>,
+    'plugin:react/recommended'<% } %><% if (vue) { %>,
+    'plugin:vue/recommended',
+    '@vue/prettier'<% } %>,<% if (typescript) { %>
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",<% } %>
+    'plugin:prettier/recommended'
+  ], 
+  <% if (vue) { -%>parser: 'vue-eslint-parser',<% } -%>
+  <% if (!vue && !typescript) { -%>parser: 'babel-eslint',<% } -%>
+  <% if (!vue && typescript) { -%>parser: '@typescript-eslint/parser',<% } -%>
+
+  parserOptions: {
+    <% if (vue && typescript) { %>parser: '@typescript-eslint/parser',<% } %>
+    sourceType: 'module'
+  },  
+  plugins: [
+    <% if (typescript) { %>'@typescript-eslint'<% } %>
+  ],
+  globals: {
+    __static: true
+  },<%if (react) { %>
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },<% } %>
+  rules: {<%if (react) { %>
+    // allow anonymous component functions
+    'react/display-name': 0,<% } %><%if (react && typescript) { %>
+    // disable prop-types when using typescript
+    'react/prop-types': 'off',
+    <% } %>
+    // allow spreading out properties from an object without warnings
+    'no-unused-vars': [1, { ignoreRestSiblings: true }],
+ 
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    
+    // allow implicit return types
+    '@typescript-eslint/explicit-function-return-type': 'off'
+  }
+}

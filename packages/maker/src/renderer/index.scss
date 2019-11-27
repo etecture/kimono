@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+@import '~bulma/sass/utilities/initial-variables';
+@import '~bulma/bulma';
+@import '~bulma-checkradio';
+@import '~@loopmode/scss-variate';
+@import '~xterm/css/xterm.css';
+
+// create variations like mb-0 for margin-bottom: 0 etc
+$sizes: (0, 0.3rem, 0.75rem, 1.5rem, 3rem, auto);
+html body #app .App {
+  @include variate(margin, $sizes);
+  @include variate(padding, $sizes);
+}
+
+html {
+  overflow: auto;
+}
+
+html,
+body,
+#app,
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.is-vcentered {
+  align-items: center;
+}
+.is-flex-1 {
+  flex: 1;
+}
+.is-unclickable {
+  cursor: default;
+  pointer-events: none;
+}
+.is-clickable {
+  cursor: pointer;
+}
+@for $i from 1 through 6 {
+  h#{$i} {
+    @extend .is-#{$i};
+    &:not(.subtitle) {
+      @extend .title;
+    }
+    &:not(:first-child) {
+      margin-top: 2rem;
+    }
+  }
+}
+
+form section + section {
+  margin-top: 2rem;
+}
+
+.XTermView .notification {
+  border-radius: 0;
+  margin: 0;
+}

@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "name": "@kimono/workspace",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:etecture/kimono.git",
+  "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
+  "license": "MIT",
+  "scripts": {
+    "build": "lerna run build --stream",
+    "watch": "lerna run watch --stream --parallel",
+    "clean": "lerna run clean --stream --parallel",
+    "test": "lerna run test --stream",
+    "test:watch": "lerna run test:watch --stream",
+    "test:run": "cross-env DEBUG=yeoman:generator packages/create-electron-app/lib/index.js ../foo",
+    "maker": "cd packages/maker && yarn start",
+    "rebuild-native": "npm rebuild && lerna run rebuild-native --stream",
+    "lint": "lerna run lint --stream"
+  },
+  "workspaces": {
+    "packages": [
+      "configs/*",
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "eslint": "^6.1.0",
+    "lerna": "^3.16.4",
+    "prettier": "^1.18.2",
+    "typescript": "^3.7.2"
+  }
+}

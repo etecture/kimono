@@ -1,0 +1,27 @@
+/*
+Note that you shouldn't import web/cdn stuff in a desktop app.
+Spectre is used from a CDN only to provide some initial styling without extrea dependencies.
+*/
+
+@import url(https://unpkg.com/spectre.css/dist/spectre.min.css);
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.App .empty-action .btn + .btn {
+  margin-left: 5px;
+}
+
+.App .footer {
+  position: absolute;
+  bottom: 0;
+  font-size: 13px;
+  opacity: 0.9;
+  transform: translateX(-50%);
+  left: 50%;
+}
