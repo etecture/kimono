@@ -1,6 +1,6 @@
 {
   "name": "@kimono/generator-electron-app",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "main": "lib/index.js",
   "license": "MIT",
   "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
@@ -31,7 +31,7 @@
     "lint": "eslint src --ext .ts,.tsx"
   },
   "dependencies": {
-    "@kimono/yo-transform-filenames": "^0.1.7",
+    "@kimono/yo-transform-filenames": "^0.1.8",
     "@types/fs-extra": "^8.0.0",
     "@types/gulp-rename": "^0.0.33",
     "@types/yeoman-environment": "^2.3.2",
