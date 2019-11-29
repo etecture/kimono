@@ -9,15 +9,23 @@ Currently, the focus is on electron apps, but will become broader in near featur
 
 This project uses yarn workspaces. Development is incompatible with npm and you will have to use `yarn`.
 
-Install the dependencies in the project root folder:
+Install the dependencies in the project root folder, rebuild the native modules for electron, do a one-time build of workspace packages:
 
 ```
 git clone git@github.com:etecture/kimono.git
 cd kimono
-yarn
+yarn install
+yarn rebuild-native
+yarn build
 ```
 
+Now you can start using the following package scripts.
+
 ## Usage
+
+### `yarn maker`
+
+Launches the development server for the `@kimono/maker` app.
 
 ### `yarn build`
 
@@ -42,7 +50,3 @@ Runs eslint on all packages.
 ### `yarn rebuild-native`
 
 Compiles native modules for the local electron version.
-
-### `yarn maker`
-
-Launches the development server for the `@kimono/maker` app.
