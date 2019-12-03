@@ -12,6 +12,7 @@ import { createCLICommand } from '../utils';
 import { forwardSlashes } from 'renderer/utils/slashes';
 import { CollapsibleCard } from 'renderer/components/collapsible/collapsible-card';
 import { NavLink } from 'renderer/components/nav-link/NavLink';
+import { store } from 'renderer/store';
 
 export interface CreateStepProps {
   pty: IPty | null;
@@ -39,7 +40,13 @@ export const CreateStep: React.FC<CreateStepProps> = props => {
 
   return (
     <>
-      <CollapsibleCard title="Details" initialCollapsed className="mt-3" titleExtra={<LaunchButton {...props} />}>
+      <CollapsibleCard
+        title="Details"
+        initialCollapsed={store.get('detailsCollapsed', false)}
+        className="mt-3"
+        titleExtra={<LaunchButton {...props} />}
+        onToggle={(collapsed: boolean) => store.set('detailsCollapsed', collapsed)}
+      >
         <Summary {...props} />
         <ControlButtons {...props} />
         <XTerminal pty={props.pty} />

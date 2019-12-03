@@ -7,6 +7,7 @@ interface CollapsibleCardProps {
   titleExtra?: ReactChild | ReactChild[] | null;
   initialCollapsed?: boolean;
   noPadding?: boolean;
+  onToggle?: (collapsed: boolean) => void;
 }
 export const CollapsibleCard: React.FC<CollapsibleCardProps> = React.memo(props => {
   const [collapsed, setCollapsed] = React.useState(props.initialCollapsed);
@@ -15,7 +16,11 @@ export const CollapsibleCard: React.FC<CollapsibleCardProps> = React.memo(props 
       if ((event.target as HTMLElement).matches('.title-extra *')) {
         return;
       }
-      setCollapsed(!collapsed);
+      const nextCollapsed = !collapsed;
+      setCollapsed(nextCollapsed);
+      if (props.onToggle) {
+        props.onToggle(nextCollapsed);
+      }
     },
     [collapsed]
   );
