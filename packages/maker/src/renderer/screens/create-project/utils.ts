@@ -1,5 +1,5 @@
 import path from 'path';
-import { joinName } from '@kimono/generator-electron-app/lib/utils/packageUtils';
+import { packageUtils } from '@kimono/yo-utils';
 import { options } from '@kimono/generator-electron-app/lib/generators/app/options';
 import findWorkspaceRoot from 'find-yarn-workspace-root';
 import { FormValues } from './form-schema';
@@ -25,7 +25,7 @@ export function createCLICommand(values: Partial<FormValues>, ignoredKeys?: stri
     ['--yes']
   );
 
-  const projectName = joinName({ packageName, packageScope });
+  const projectName = packageUtils.joinName({ packageName, packageScope });
 
   if (process.env.NODE_ENV === 'development') {
     const workspaceRoot = findWorkspaceRoot();

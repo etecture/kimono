@@ -1,4 +1,4 @@
-import { GeneratorOption } from '../../types';
+import { GeneratorOption } from '@kimono/yo-utils/lib/types.d';
 
 export const options: GeneratorOption[] = [
   {

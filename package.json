@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "lerna run build --stream",
+    "rebuild": "lerna run rebuild --stream",
     "watch": "lerna run watch --stream --parallel",
     "clean": "lerna run clean --stream --parallel",
     "test": "lerna run test --stream",

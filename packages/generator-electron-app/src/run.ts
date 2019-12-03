@@ -1,5 +1,5 @@
 import YoEnv from 'yeoman-environment';
-import { RunGeneratorOptions } from './types';
+import { RunGeneratorOptions } from '@kimono/yo-utils/lib/types';
 
 export default async function run({ argv = process.argv.slice() }: RunGeneratorOptions = {}) {
   try {

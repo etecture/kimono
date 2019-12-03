@@ -16,13 +16,11 @@ const path_1 = __importDefault(require("path"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const yeoman_generator_1 = __importDefault(require("yeoman-generator"));
 const yosay_1 = __importDefault(require("yosay"));
-const binaryUtils_1 = require("../../utils/binaryUtils");
-const questionsUtils_1 = require("../../utils/questionsUtils");
 const yo_transform_filenames_1 = require("@kimono/yo-transform-filenames");
-const doneMessage_1 = require("../../utils/doneMessage");
+const yo_utils_1 = require("@kimono/yo-utils");
+const options_1 = require("./options");
+const doneMessage_1 = require("../../doneMessage");
 const { name, version } = require('../../../package.json');
-if (process.env.NODE_ENV === 'development')
-    console.log('EWAGenerator');
 class EWAGenerator extends yeoman_generator_1.default {
     constructor(args, opts) {
         super(args, opts);
@@ -33,7 +31,7 @@ class EWAGenerator extends yeoman_generator_1.default {
             required: false,
             description: 'Name for the new project'
         });
-        questionsUtils_1.initOptions(this);
+        yo_utils_1.questionUtils.initOptions(this, options_1.options);
     }
     prompting() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -41,9 +39,9 @@ class EWAGenerator extends yeoman_generator_1.default {
             const cliValues = Object.assign({}, options);
             const questionDefaults = Object.assign(Object.assign({}, cliValues), { projectName: options.projectName });
             try {
-                let userOptions = yield questionsUtils_1.getAnswers(this, cliValues, questionDefaults);
-                userOptions = questionsUtils_1.applyImplicitOptions(userOptions);
-                this.props = questionsUtils_1.addComputedOptions(userOptions);
+                let userOptions = yield yo_utils_1.questionUtils.getAnswers(this, cliValues, questionDefaults, options_1.options);
+                userOptions = yo_utils_1.questionUtils.applyImplicitOptions(userOptions);
+                this.props = yo_utils_1.questionUtils.addComputedOptions(userOptions);
                 this.destinationRoot(this.props.projectName);
             }
             catch (error) {
@@ -57,7 +55,7 @@ class EWAGenerator extends yeoman_generator_1.default {
             const context = this.props;
             this.registerTransformStream(yo_transform_filenames_1.createTransformStream(context));
             const ignoredConditionalFiles = (yield yo_transform_filenames_1.createIgnoreGlobs(this.templatePath(), context));
-            const binaryTemplateFiles = binaryUtils_1.getBinaryFiles(this.templatePath(), ignoredConditionalFiles);
+            const binaryTemplateFiles = yo_utils_1.binaryUtils.getBinaryFiles(this.templatePath(), ignoredConditionalFiles);
             binaryTemplateFiles.forEach((file) => {
                 const rendered = yo_transform_filenames_1.renderPath(this.destinationPath(file), context);
                 const src = this.templatePath(file);
@@ -65,7 +63,7 @@ class EWAGenerator extends yeoman_generator_1.default {
                 fs_extra_1.default.ensureDirSync(path_1.default.dirname(dest));
                 fs_extra_1.default.copyFileSync(src, dest);
             });
-            const ignoredBinaryFiles = binaryUtils_1.getBinaryIgnoreGlobs(binaryTemplateFiles);
+            const ignoredBinaryFiles = yo_utils_1.binaryUtils.getBinaryIgnoreGlobs(binaryTemplateFiles);
             this.fs.copyTpl([this.templatePath('**/*')], this.destinationPath(), context, {}, {
                 globOptions: {
                     dot: true,
