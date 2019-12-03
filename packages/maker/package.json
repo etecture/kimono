@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron-webpack dev",
     "compile": "electron-webpack",
-    "rebuild-native": "electron-builder install-app-deps",
+    "native": "electron-builder install-app-deps",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "lint": "eslint src --ext .ts,.tsx"

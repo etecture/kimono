@@ -7,6 +7,10 @@
   "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
   "license": "MIT",
   "scripts": {
+    "setup": "npm-run-all native build",
+    "start": "npm-run-all --parallel watch maker",
+    "dist": "npm-run-all native build && lerna run dist --stream",
+    "native": "npm rebuild && lerna run native --stream",
     "build": "lerna run build --stream",
     "rebuild": "lerna run rebuild --stream",
     "watch": "lerna run watch --stream --parallel",
@@ -15,7 +19,6 @@
     "test:watch": "lerna run test:watch --stream",
     "test:run": "cross-env DEBUG=yeoman:generator packages/create-electron-app/lib/index.js ../foo",
     "maker": "cd packages/maker && yarn start",
-    "rebuild-native": "npm rebuild && lerna run rebuild-native --stream",
     "lint": "lerna run lint --stream"
   },
   "workspaces": {
@@ -28,6 +31,7 @@
     "cross-env": "^5.2.0",
     "eslint": "^6.1.0",
     "lerna": "^3.16.4",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "typescript": "^3.7.2"
   }
