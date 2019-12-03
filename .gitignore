@@ -7,3 +7,4 @@ thumbs.db
 **/.tsbuildinfo
 /foo
 /desktop.ini
+**/lib
