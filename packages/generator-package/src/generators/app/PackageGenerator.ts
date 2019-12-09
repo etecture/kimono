@@ -140,8 +140,6 @@ export default class PackageGenerator extends Generator {
         }
       }
     );
-
-    this._formatPackageJson();
   }
 
   async install() {
@@ -166,6 +164,7 @@ export default class PackageGenerator extends Generator {
   }
 
   end() {
+    this._formatPackageJson();
     const context = this.templateVars!;
 
     const messages = [
