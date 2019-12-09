@@ -21,7 +21,7 @@
     "js-yaml": "3.13.1"
   },
   "electronWebpack": {
-    "title": true,
+    "title": "Maker",
     "renderer": {
       "webpackConfig": "webpack.renderer.config.js"
     }
