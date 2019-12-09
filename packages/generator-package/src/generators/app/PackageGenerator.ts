@@ -158,7 +158,7 @@ export default class PackageGenerator extends Generator {
     if (fs.pathExistsSync(filePath)) {
       // re-format package.json
       const pkg = require(filePath);
-      this.fs.write(this.destinationPath('package.json'), JSON.stringify(pkg, null, 2));
+      this.fs.write(filePath, JSON.stringify(pkg, null, 2));
     } else {
       console.warn('>> package.json not found in output directory!', filePath);
     }
