@@ -24,7 +24,12 @@ export interface AuthorDescriptor {
  * @param {string} name The package name
  * @return {string} The fixed package name
  */
-export function normalize(name: string): string {
+export function normalizePackageName(name: string): string {
+  if (!name) {
+    return name;
+  }
+  // remove ../
+  name = name.replace(/\.\.(\/|\\)/g, '');
   let { packageScope, packageName } = splitName(name);
 
   // user provided foo/bar instead of @foo/bar
@@ -66,6 +71,9 @@ export function joinName({ packageName, packageScope }: PackageDescriptor): stri
     throw new Error('packageName is required');
   }
   if (packageScope) {
+    if (packageScope[0] !== '@') {
+      packageScope = `@${packageScope}`;
+    }
     return `${packageScope}/${packageName}`;
   }
   return packageName;
@@ -83,7 +91,7 @@ export function getGeneratorPackageName(name: string, PREFIX: string = 'generato
 
   packageName = packageName.startsWith(PREFIX) ? packageName : `${PREFIX}${packageName}`;
 
-  return normalize(joinName({ packageScope, packageName }));
+  return normalizePackageName(joinName({ packageScope, packageName }));
 }
 
 /**
@@ -188,4 +196,11 @@ export async function downloadPackage(name: string): Promise<string | null> {
   }
 
   return null;
+}
+
+export function shake(obj: Record<string, unknown>): Record<string, unknown> {
+  return Object.entries(obj).reduce((result, [key, value]) => {
+    if (!value) return result;
+    return { ...result, [key]: value };
+  }, {});
 }

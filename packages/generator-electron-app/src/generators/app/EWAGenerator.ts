@@ -5,7 +5,7 @@ import Generator from 'yeoman-generator';
 import yosay from 'yosay';
 
 import { createTransformStream, createIgnoreGlobs, getFilePath, renderPath } from '@kimono/yo-transform-filenames';
-import { binaryUtils, questionUtils } from '@kimono/yo-utils';
+import { binaryUtils, questionUtils, packageUtils } from '@kimono/yo-utils';
 
 import { options as appOptions } from './options';
 import { EWAGeneratorOptions } from '../../types';
@@ -14,7 +14,7 @@ import { doneMessage } from '../../doneMessage';
 const { name, version } = require('../../../package.json');
 
 export default class EWAGenerator extends Generator {
-  props?: EWAGeneratorOptions;
+  templateVars?: EWAGeneratorOptions;
 
   constructor(args: string | string[], opts: {}) {
     super(args, opts);
@@ -49,15 +49,16 @@ export default class EWAGenerator extends Generator {
         appOptions
       );
       userOptions = questionUtils.applyImplicitOptions(userOptions);
-      this.props = questionUtils.addComputedOptions(userOptions);
-      this.destinationRoot(this.props!.projectName);
+      userOptions.projectName = packageUtils.normalizePackageName(userOptions.projectName!);
+      this.templateVars = questionUtils.addCamelCased(userOptions, ['projectName']);
+      this.destinationRoot(packageUtils.splitName(this.templateVars?.projectName || '').packageName);
     } catch (error) {
       this.log(`An error occurred: ${error.message}`);
       process.exit(1);
     }
   }
   async writing() {
-    const context = this.props as {};
+    const context = this.templateVars as {};
 
     //--------------------------------------------------------------------
     // FILENAME TEMPLATE SYNTAX
@@ -101,29 +102,29 @@ export default class EWAGenerator extends Generator {
   }
 
   async install() {
-    const props = this.props!;
-    if (props.install) {
-      if (props.yarn) {
+    const context = this.templateVars!;
+    if (context.install) {
+      if (context.yarn) {
         this.yarnInstall();
       } else {
         this.npmInstall();
       }
     }
-    if (props.git) {
+    if (context.git) {
       const done = this.async();
       this.spawnCommand('git', ['init'], { cwd: this.destinationPath() }).on('close', done);
     }
   }
 
   end() {
-    const props = this.props!;
+    const context = this.templateVars!;
     const messages = [
       'All right!',
       'Your project was created.',
       'Try it out:\n',
-      `cd ${props.projectName}`,
-      !props.install && (props.yarn ? 'yarn install' : 'npm install'),
-      props.yarn ? 'yarn dev' : 'npm run dev'
+      `cd ${context.projectName}`,
+      !context.install && (context.yarn ? 'yarn install' : 'npm install'),
+      context.yarn ? 'yarn dev' : 'npm run dev'
     ];
     const message = messages.filter(Boolean).join('\n');
 

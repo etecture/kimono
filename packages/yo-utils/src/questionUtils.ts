@@ -44,14 +44,29 @@ function getQuestions(values: GeneratorOptions, appOptions: GeneratorOption[]): 
 
 /**
  * Adds custom or computed values to those provided by the user
- * @param options given yo questions and answers
+ * @param generatorOptions given yo questions and answers object
+ * @param fields An array of property names to create camelcased values from
+ * @param keyFunc A function that generates the name for the newly created properties. Appends `CC` by default.
  * @return generator options usable by our templates
  */
-export function addComputedOptions(options: GeneratorOptions): GeneratorOptions {
-  return {
-    ...options,
-    projectNameCC: camelcase(options.projectName as string)
+export function addCamelCased(
+  generatorOptions: GeneratorOptions,
+  fields: string[],
+  keyFunc = (key: string) => `${key}CC`
+): GeneratorOptions {
+  const result = {
+    ...generatorOptions,
+    ...fields.reduce((result, key) => {
+      if (!generatorOptions[key]) {
+        return result;
+      }
+      return {
+        ...result,
+        [keyFunc(key)]: camelcase(generatorOptions[key])
+      };
+    }, {})
   };
+  return result;
 }
 
 const defaultInternalOptions: GeneratorOptions = {
