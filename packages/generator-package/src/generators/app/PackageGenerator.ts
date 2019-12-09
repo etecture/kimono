@@ -79,14 +79,19 @@ export default class PackageGenerator extends Generator {
       result.publishConfig = null;
     }
 
-    if (result.tpl && fs.pathExistsSync(path.resolve(result.tpl))) {
-      result.tpl = path.resolve(result.tpl);
-    }
-
     // package.json dependencies
     if (!result.dependencies) result.dependencies = '';
     if (!result.devDependencies) result.devDependencies = '';
     if (!result.peerDependencies) result.peerDependencies = '';
+
+    // custom tpl dir
+    if (result.tpl) {
+      if (result.tpl.startsWith('./')) {
+        result.tpl = path.resolve(process.cwd(), result.tpl);
+      } else {
+        result.tpl = path.resolve(result.tpl);
+      }
+    }
 
     return result;
   }
