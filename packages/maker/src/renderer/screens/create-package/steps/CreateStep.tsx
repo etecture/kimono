@@ -9,7 +9,6 @@ import { ButtonGroup } from 'renderer/components/button-group/button-group';
 import { doneMessage } from '@kimono/generator-package/lib/doneMessage';
 import XTerminal from '@kimono/xpty';
 import { createCLICommand } from '../utils';
-import { forwardSlashes } from 'renderer/utils/slashes';
 import { CollapsibleCard } from 'renderer/components/collapsible/collapsible-card';
 import { NavLink } from 'renderer/components/nav-link/NavLink';
 import { store } from 'renderer/screens/create-project/store';
@@ -83,7 +82,7 @@ const ControlButtons: React.FC<CreateStepProps> = props => (
 const Summary: React.FC<CreateStepProps> = props => (
   <ul>
     <li>
-      location: <code>{forwardSlashes(props.values.cwd)}</code>
+      location: <code>{props.values.cwd}</code>
     </li>
     <li>
       {process.env.NODE_ENV === 'development' ? (
@@ -92,7 +91,7 @@ const Summary: React.FC<CreateStepProps> = props => (
         </span>
       ) : null}
       <span>
-        command: <code> {forwardSlashes(createCLICommand(props.values, ['cwd']))} </code>
+        command: <code> {createCLICommand(props.values, ['cwd'])} </code>
       </span>
     </li>
   </ul>

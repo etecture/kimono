@@ -79,6 +79,10 @@ export default class PackageGenerator extends Generator {
       result.publishConfig = null;
     }
 
+    if (result.tpl && fs.pathExistsSync(path.resolve(result.tpl))) {
+      result.tpl = path.resolve(result.tpl);
+    }
+
     // package.json dependencies
     if (!result.dependencies) result.dependencies = '';
     if (!result.devDependencies) result.devDependencies = '';
@@ -87,8 +91,10 @@ export default class PackageGenerator extends Generator {
     return result;
   }
   async writing() {
+    if (this.templateVars!.tpl) {
+      this.sourceRoot(this.templateVars!.tpl);
+    }
     const context = this.templateVars as {};
-
     //--------------------------------------------------------------------
     // FILENAME TEMPLATE SYNTAX
     // - render EJS syntax in filenames using a transform stream
@@ -142,14 +148,9 @@ export default class PackageGenerator extends Generator {
         this.npmInstall();
       }
     }
-    // if (props.git) {
-    //   const done = this.async();
-    //   this.spawnCommand('git', ['init'], { cwd: this.destinationPath() }).on('close', done);
-    // }
   }
 
   _formatPackageJson() {
-    console.log('>> _formatPackageJson');
     if (fs.existsSync(this.destinationPath('package.json'))) {
       // re-format package.json
       const pkg = require(this.destinationPath('package.json'));

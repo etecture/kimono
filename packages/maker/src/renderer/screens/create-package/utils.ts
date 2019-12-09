@@ -19,7 +19,10 @@ export function createCLICommand(values: Partial<FormValues>, ignoredKeys?: stri
   if (transpiler) {
     Object.assign(flags, { [transpiler]: true });
   }
-  console.log('>>', { flags });
+  if (values.tpl) {
+    values.tpl = path.resolve(values.tpl);
+  }
+
   const args = Object.entries(flags).reduce(
     (result: string[], [key, value]) => {
       if (ignoredKeys && ignoredKeys.includes(key)) {

@@ -4,6 +4,7 @@ import { remote } from 'electron';
 import setNativeInputValue from './set-native-input-value';
 
 import styled from 'styled-components';
+import { forwardSlashes } from 'renderer/utils/slashes';
 
 const StyledContainer = styled.div`
   input {
@@ -71,7 +72,7 @@ export const FileInput: React.FC<FileInputProps> = React.memo(
         properties
       });
       if (selection) {
-        setNativeInputValue(inputRef.current, selection[0], true);
+        setNativeInputValue(inputRef.current, forwardSlashes(selection[0]), true);
       }
     }, [onChange, openFile, openDirectory, multiSelections, inputRef.current]);
 

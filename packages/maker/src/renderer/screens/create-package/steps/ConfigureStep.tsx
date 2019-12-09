@@ -43,6 +43,15 @@ export const ConfigureStep: React.FC<{
                 />
               </FormField>
 
+              <FormField horizontal label={'Custom template'} error={getError('tpl')}>
+                <FormikFileInput
+                  placeholder="Location of the template folder to use"
+                  name="tpl"
+                  openDirectory
+                  openFile={false}
+                />
+              </FormField>
+
               <PackageNameInput
                 horizontal
                 className="is-flex-1"

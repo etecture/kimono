@@ -4,6 +4,7 @@ import { store } from './store';
 // these values are used the very first time.
 export const defaultInitialValues: FormValues = {
   verbose: false,
+  tpl: '',
   cwd: '',
   projectName: '',
   packageName: '',

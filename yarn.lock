@@ -1661,10 +1661,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@loopmode/scss-variate@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@loopmode/scss-variate/-/scss-variate-1.0.1.tgz#aa3d9787634f78f28833e9d2d627c3946d36e163"
-  integrity sha512-Yo4ZXbRPY0RlWr1TLU9JotpvDKx6m2Nl0FaO07OGeHBwtOFf7qmqNmOpZqs+yVTXsJCAa73NbeZYWgEJAOxpOw==
+"@loopmode/scss-variate@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/@loopmode/scss-variate/-/scss-variate-1.0.2.tgz#ebc328b593818ca5fc0bc03eea1ff8b9b8e0b89f"
+  integrity sha512-4yrwjt+v0x2Cwd2ZAnlb/cGCSxiYY2/3tv4/zod/hJrz6+QZN5JxG3UTve4zbRIDxWWYPcLhNSI5q9wLAHfK1A==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

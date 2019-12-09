@@ -9,6 +9,11 @@ export const options: GeneratorOption[] = [
     description: 'yes: Skip questions and use default values?'
   },
   {
+    name: 'tpl',
+    type: String,
+    description: 'tpl: (Optional) Location of custom template'
+  },
+  {
     name: 'verbose',
     alias: 'v',
     default: false,

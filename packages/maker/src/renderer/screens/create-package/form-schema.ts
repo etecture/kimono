@@ -3,6 +3,7 @@ import { KeyValueItem } from '@kimono/xpty';
 
 export interface FormValues {
   verbose: boolean;
+  tpl: string;
   cwd: string;
   projectName: string;
   packageName?: string;
