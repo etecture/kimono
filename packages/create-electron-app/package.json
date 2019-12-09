@@ -1,6 +1,6 @@
 {
   "name": "@kimono/create-electron-app",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "main": "lib/index.js",
   "bin": "lib/index.js",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "webpack"
   ],
   "dependencies": {
-    "@kimono/generator-electron-app": "^0.4.2"
+    "@kimono/generator-electron-app": "^0.4.3"
   },
   "gitHead": "5991ea486315401838eea5ddbacab695b8c3137e"
 }
