@@ -1,6 +1,6 @@
 {
   "name": "@kimono/generator-electron-app",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "lib/index.js",
   "license": "MIT",
   "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
@@ -30,8 +30,8 @@
     "prepublishOnly": "yarn lint && yarn rebuild"
   },
   "dependencies": {
-    "@kimono/yo-transform-filenames": "^0.2.0",
-    "@kimono/yo-utils": "^0.1.1",
+    "@kimono/yo-transform-filenames": "^0.2.1",
+    "@kimono/yo-utils": "^0.1.2",
     "fs-extra": "^8.1.0",
     "gulp-rename": "1.2.2",
     "yeoman-environment": "^2.4.0",

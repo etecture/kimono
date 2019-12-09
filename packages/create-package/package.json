@@ -1,6 +1,6 @@
 {
   "name": "@kimono/create-package",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "main": "lib/index.js",
   "bin": "lib/index.js",
   "license": "MIT",
@@ -27,6 +27,6 @@
     "webpack"
   ],
   "dependencies": {
-    "@kimono/generator-package": "^0.1.2"
+    "@kimono/generator-package": "^0.1.3"
   }
 }
