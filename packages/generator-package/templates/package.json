@@ -1,0 +1,38 @@
+{
+  <% if (private) { %>"private": true,<% } %>
+  "name": "<%= projectName %>",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+
+  <% if (license) { %>"license": "<%=license%>",<% } %>
+  <% if (homepage) { %>"homepage": "<%=homepage%>",<% } %>
+  
+  "scripts": {
+    "build": <% if (typescript) { %>"tsc"<% } else { %>"babel src --out-dir ./lib --source-maps"<% } %>,
+    "watch": <% if (typescript) { %>"tsc --watch"<% } else { %>"yarn build --watch"<% } %>,
+    "clean": "rm -rf lib/*<% if (typescript) { %> && rm -f .tsbuildinfo<% } %>",
+    "rebuild": "yarn clean && yarn build",
+    "lint": "eslint src --ext .ts,.tsx",
+    "prepublishOnly": "yarn lint && yarn rebuild"    
+  }
+
+  <% if (repository && repository.url) { %>,
+  "repository": <%- JSON.stringify(repository) %>
+  <% } %>
+
+  <% if (publishConfig) { %>,
+  "publishConfig": <%- JSON.stringify(publishConfig) %>
+  <% } %>
+  
+  <% if (dependencies ) { %>,
+  "dependencies": <%- JSON.stringify(dependencies.split(',')) %>
+  <% } %>
+
+  <% if (devDependencies ) { %>,
+  "devDependencies": <%- JSON.stringify(devDependencies.split(',')) %>
+  <% } %>
+
+  <% if (peerDependencies ) { %>,
+  "peerDependencies": <%- JSON.stringify(peerDependencies.split(',')) %>
+  <% } %>
+}
