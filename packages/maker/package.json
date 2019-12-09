@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@kimono/xpty": "^0.5.10",
-    "@loopmode/scss-variate": "^1.0.1",
+    "@loopmode/scss-variate": "^1.0.2",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.8.6",
     "@types/react-dom": "^16.8.6",
