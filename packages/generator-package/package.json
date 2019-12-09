@@ -26,7 +26,8 @@
     "watch": "tsc --watch",
     "clean": "rm -rf lib && rm -f .tsbuildinfo",
     "rebuild": "yarn clean && yarn build",
-    "lint": "eslint src --ext .ts,.tsx"
+    "lint": "eslint src --ext .ts,.tsx",
+    "prepublishOnly": "yarn lint && yarn rebuild"
   },
   "dependencies": {
     "@kimono/yo-transform-filenames": "^0.2.0",
