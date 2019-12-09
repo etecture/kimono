@@ -59,7 +59,7 @@ export const CreateProjectScreen: React.FC<{ onDone: () => void }> = () => {
         render={() => {
           return (
             <>
-              <StepHeader backLink="/" title="Configure" />
+              <StepHeader backLink="/" title="Configure new app" />
               <ConfigureStep onSubmit={handleSubmitForm} />
             </>
           );
@@ -70,7 +70,7 @@ export const CreateProjectScreen: React.FC<{ onDone: () => void }> = () => {
         render={() => {
           return (
             <>
-              <StepHeader backLink="/create-project/configure" title="Create" />
+              <StepHeader backLink="/create-project/configure" title="Create new app" />
               <CreateStep
                 pty={pty}
                 values={getValues()}

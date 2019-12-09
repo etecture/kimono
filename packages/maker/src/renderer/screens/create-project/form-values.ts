@@ -1,5 +1,5 @@
 import { FormValues } from './form-schema';
-import { store } from 'renderer/store';
+import { store } from './store';
 
 // these values are used the very first time.
 export const defaultInitialValues: FormValues = {

@@ -12,7 +12,7 @@ import { createCLICommand } from '../utils';
 import { forwardSlashes } from 'renderer/utils/slashes';
 import { CollapsibleCard } from 'renderer/components/collapsible/collapsible-card';
 import { NavLink } from 'renderer/components/nav-link/NavLink';
-import { store } from 'renderer/store';
+import { store } from 'renderer/screens/create-project/store';
 
 export interface CreateStepProps {
   pty: IPty | null;
@@ -37,6 +37,12 @@ export const CreateStep: React.FC<CreateStepProps> = props => {
     }
     return () => null;
   }, [props.pty]);
+
+  React.useEffect(() => {
+    if (props.isFinished) {
+      props.onKill();
+    }
+  }, []);
 
   return (
     <>
@@ -103,7 +109,9 @@ const Finished: React.FC<CreateStepProps> = props => (
     <button
       className="button"
       onClick={() => {
-        shell.openExternalSync(path.resolve(props.values.cwd, props.values.packageName), { activate: true });
+        shell.openExternalSync(path.resolve(props.values.cwd, props.values.packageName), {
+          activate: true
+        });
       }}
     >
       Open folder
