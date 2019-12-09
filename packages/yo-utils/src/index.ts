@@ -15,3 +15,6 @@ export { shellUtils };
 
 import * as types from './types';
 export { types };
+
+import * as fsUtils from './fsUtils';
+export { fsUtils };

@@ -5,7 +5,7 @@ import Generator from 'yeoman-generator';
 import yosay from 'yosay';
 
 import { createTransformStream, createIgnoreGlobs, getFilePath, renderPath } from '@kimono/yo-transform-filenames';
-import { binaryUtils, questionUtils, packageUtils } from '@kimono/yo-utils';
+import { binaryUtils, questionUtils, packageUtils, fsUtils } from '@kimono/yo-utils';
 
 import { options as appOptions } from './options';
 import { PackageGeneratorOptions } from '../../types';
@@ -154,11 +154,10 @@ export default class PackageGenerator extends Generator {
   }
 
   _formatPackageJson() {
-    const filePath = path.resolve(this.destinationPath('package.json'));
+    const filePath = fsUtils.forwardSlashes(path.resolve(this.destinationPath('package.json')));
     if (fs.pathExistsSync(filePath)) {
       // re-format package.json
-      const pkg = require(filePath);
-      this.fs.write(filePath, JSON.stringify(pkg, null, 2));
+      this.fs.write(filePath, JSON.stringify(require(filePath), null, 2));
     } else {
       console.warn('>> package.json not found in output directory!', filePath);
     }
