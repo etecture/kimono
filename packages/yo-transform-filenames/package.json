@@ -1,5 +1,5 @@
 {
-  "version": "0.1.8",
+  "version": "0.2.0",
   "name": "@kimono/yo-transform-filenames",
   "description": "Template logic for filenames",
   "main": "lib/index.js",
