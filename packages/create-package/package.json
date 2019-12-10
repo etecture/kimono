@@ -1,6 +1,6 @@
 {
   "name": "@kimono/create-package",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "main": "lib/index.js",
   "bin": "lib/index.js",
   "license": "MIT",
