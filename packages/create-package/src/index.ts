@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
-if (process.env.NODE_ENV === 'development') console.log('create-package');
+if (process.env.NODE_ENV === 'development') console.log('[@kimono/create-package]');
 
 import runGenerator from '@kimono/generator-package/lib/run';
 
-runGenerator();
+async function run() {
+  try {
+    await runGenerator();
+  } catch (error) {
+    console.error('[@kimono/create-package] failed', error);
+  }
+}
+
+run();
