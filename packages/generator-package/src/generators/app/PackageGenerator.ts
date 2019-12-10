@@ -167,14 +167,7 @@ export default class PackageGenerator extends Generator {
     this._formatPackageJson();
     const context = this.templateVars!;
 
-    const messages = [
-      'All right!',
-      'Your package was created.',
-      'Try it out:\n',
-      `cd ${context.projectName}`,
-      !context.install && (context.yarn ? 'yarn install' : 'npm install'),
-      context.yarn ? 'yarn dev' : 'npm run dev'
-    ];
+    const messages = ['All right!', 'Your package was created - have a look:', `cd ${context.projectName}`];
     const message = messages.filter(Boolean).join('\n');
 
     this.log(yosay(message));
