@@ -1,6 +1,6 @@
 {
   "name": "@kimono/create-electron-app",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "main": "lib/index.js",
   "bin": "lib/index.js",
   "license": "MIT",
