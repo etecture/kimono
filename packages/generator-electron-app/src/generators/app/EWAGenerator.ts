@@ -122,7 +122,7 @@ export default class EWAGenerator extends Generator {
       'All right!',
       'Your project was created.',
       'Try it out:\n',
-      `cd ${context.projectName}`,
+      `cd ${packageUtils.splitName(context.projectName!).packageName}`,
       !context.install && (context.yarn ? 'yarn install' : 'npm install'),
       context.yarn ? 'yarn dev' : 'npm run dev'
     ];
