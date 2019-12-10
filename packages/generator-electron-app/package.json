@@ -1,6 +1,6 @@
 {
   "name": "@kimono/generator-electron-app",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "main": "lib/index.js",
   "license": "MIT",
   "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
