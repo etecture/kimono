@@ -1,6 +1,6 @@
 {
   "name": "@kimono/generator-package",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "lib/index.js",
   "license": "MIT",
   "author": "Jovica Aleksic <jovica.aleksic@etecture.de>",
