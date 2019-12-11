@@ -16,9 +16,11 @@ const { name, version } = require('../../../package.json');
 
 export default class PackageGenerator extends Generator {
   templateVars?: PackageGeneratorOptions;
-
+  // cwd gets changed during the process. we remember the initial value.
+  initialCwd: string;
   constructor(args: string | string[], opts: {}) {
     super(args, opts);
+    this.initialCwd = process.cwd();
     this.sourceRoot(path.resolve(__dirname, '../../../templates'));
 
     this.log(`${name}@${version} init`);
@@ -90,6 +92,7 @@ export default class PackageGenerator extends Generator {
     }
 
     // package.json dependencies
+    if (result.private === undefined) result.private = false;
     if (!result.dependencies) result.dependencies = '';
     if (!result.devDependencies) result.devDependencies = '';
     if (!result.peerDependencies) result.peerDependencies = '';
@@ -164,15 +167,15 @@ export default class PackageGenerator extends Generator {
   async install() {
     const context = this.templateVars!;
     if (context.symlink) {
-      symlinkDir(
-        this.destinationPath(),
-        path.resolve(
-          context.symlink.startsWith('.') ? process.cwd() : '',
-          context.symlink,
-          context.packageScope || '',
-          context.packageName!
-        )
+      const symlinkFrom = this.destinationPath();
+      const symlinkTo = path.resolve(
+        context.symlink.startsWith('.') ? this.initialCwd : '',
+        context.symlink,
+        context.packageScope || '',
+        context.packageName!
       );
+      fs.ensureDirSync(path.resolve(symlinkTo, '..'));
+      symlinkDir(symlinkFrom, symlinkTo);
     }
     if (context.install) {
       if (context.yarn) {
