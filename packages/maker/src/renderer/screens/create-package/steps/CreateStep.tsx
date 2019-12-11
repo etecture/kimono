@@ -82,16 +82,13 @@ const ControlButtons: React.FC<CreateStepProps> = props => (
 const Summary: React.FC<CreateStepProps> = props => (
   <ul>
     <li>
-      location: <code>{props.values.dest}</code>
-    </li>
-    <li>
       {process.env.NODE_ENV === 'development' ? (
         <span className="tag is-info mr-1" title="The command will be different in production mode">
           DEV
         </span>
       ) : null}
       <span>
-        command: <code> {createCLICommand(props.values, ['dest'])} </code>
+        command: <code> {createCLICommand(props.values)} </code>
       </span>
     </li>
   </ul>

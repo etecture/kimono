@@ -32,11 +32,7 @@ export const CreatePackageScreen: React.FC<{ onDone: () => void }> = () => {
     const values = getValues();
     setFinished(false);
     setBusy(true);
-    if (process.env.NODE_ENV === 'production') {
-      execute(createCLICommand(values, ['dest']), { cwd: values.dest });
-    } else {
-      execute(createCLICommand(values));
-    }
+    execute(createCLICommand(values));
   }, [execute]);
 
   const handleKill = React.useCallback(() => {
