@@ -48,13 +48,10 @@ export default class PackageGenerator extends Generator {
     }
 
     this.templateVars = this._finalizeContext(this.templateVars!);
-
     if (this.templateVars.dest) {
-      if (this.templateVars.dest.startsWith('.')) {
-        this.templateVars.dest = path.resolve(process.cwd(), this.templateVars.dest);
-      }
       fs.ensureDirSync(path.resolve(this.templateVars.dest));
     }
+
     this.destinationRoot(path.resolve(this.templateVars.dest || '', this.templateVars.packageName!));
   }
 
@@ -96,9 +93,18 @@ export default class PackageGenerator extends Generator {
     if (!result.devDependencies) result.devDependencies = '';
     if (!result.peerDependencies) result.peerDependencies = '';
 
+    // custom dest dir
+    if (result.dest) {
+      if (result.dest.startsWith('.')) {
+        result.dest = path.resolve(process.cwd(), result.dest);
+      } else {
+        result.dest = path.resolve(result.dest);
+      }
+    }
+
     // custom tpl dir
     if (result.tpl) {
-      if (result.tpl.startsWith('./')) {
+      if (result.tpl.startsWith('.')) {
         result.tpl = path.resolve(process.cwd(), result.tpl);
       } else {
         result.tpl = path.resolve(result.tpl);
