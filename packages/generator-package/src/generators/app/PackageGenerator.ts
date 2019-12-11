@@ -78,7 +78,7 @@ export default class PackageGenerator extends Generator {
     result.projectName = packageUtils.normalizePackageName(result.projectName!);
     const { packageName, packageScope } = packageUtils.splitName(result.projectName!);
     result.packageName = packageName;
-    result.packageScope = packageScope;
+    result.packageScope = packageScope || '';
 
     // some values must be computed or derived based on the given values
     // TODO make this controllable, e.g. option with default
