@@ -3,6 +3,7 @@ import fs from 'fs-extra';
 
 import Generator from 'yeoman-generator';
 import yosay from 'yosay';
+import symlinkDir from 'symlink-dir';
 
 import { createTransformStream, createIgnoreGlobs, getFilePath, renderPath } from '@kimono/yo-transform-filenames';
 import { binaryUtils, questionUtils, packageUtils, fsUtils } from '@kimono/yo-utils';
@@ -162,6 +163,17 @@ export default class PackageGenerator extends Generator {
 
   async install() {
     const context = this.templateVars!;
+    if (context.symlink) {
+      symlinkDir(
+        this.destinationPath(),
+        path.resolve(
+          context.symlink.startsWith('.') ? process.cwd() : '',
+          context.symlink,
+          context.packageScope || '',
+          context.packageName!
+        )
+      );
+    }
     if (context.install) {
       if (context.yarn) {
         this.yarnInstall();

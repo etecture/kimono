@@ -5,6 +5,7 @@ export interface PackageGeneratorOptions {
   packageName?: string;
   packageScope?: string;
   description?: string;
+  symlink?: string;
   yes?: boolean;
   verbose?: boolean;
   install?: boolean;

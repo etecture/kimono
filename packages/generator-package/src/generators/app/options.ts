@@ -39,6 +39,12 @@ export const options: GeneratorOption[] = [
     type: Boolean,
     description: 'yarn: Use yarn instead of npm?'
   },
+  {
+    name: 'symlink',
+    alias: 's',
+    type: String,
+    description: 'symlink: Path to a folder into which to create a symlink to the new package'
+  },
   //------------------
   {
     name: 'private',
