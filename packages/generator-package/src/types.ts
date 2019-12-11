@@ -14,6 +14,8 @@ export interface PackageGeneratorOptions {
   private?: boolean;
   license?: string;
   homepage?: string;
+  // TODO clean up provided vs generated values
+  // e.g. repository and publishCOnfig objects are derived from individual provided fields
   repository?: null | {
     url?: string;
     type?: string;

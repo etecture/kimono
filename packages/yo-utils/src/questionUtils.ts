@@ -43,26 +43,64 @@ function getQuestions(values: GeneratorOptions, appOptions: GeneratorOption[]): 
 }
 
 /**
- * Adds custom or computed values to those provided by the user
- * @param generatorOptions given yo questions and answers object
- * @param fields An array of property names to create camelcased values from
- * @param keyFunc A function that generates the name for the newly created properties. Appends `CC` by default.
- * @return generator options usable by our templates
+ * Adds camel-cased value variants
+ * @param data The current generator options
+ * @param fields Names of properties to convert
+ * @return the extended generator options
  */
-export function addCamelCased(
-  generatorOptions: GeneratorOptions,
-  fields: string[],
-  keyFunc = (key: string) => `${key}CC`
+export function addCamelCased(data: GeneratorOptions, fields: string[]): GeneratorOptions {
+  return addCasedVariants(data, {
+    fields,
+    keyFunc: (key: string) => `${key}CC`,
+    pascalCase: false
+  });
+}
+
+/**
+ * Adds pascal-cased value variants
+ * @param data The current generator options
+ * @param fields Names of properties to convert
+ * @return the extended generator options
+ */
+export function addPascalCased(data: GeneratorOptions, fields: string[]): GeneratorOptions {
+  return addCasedVariants(data, {
+    fields,
+    keyFunc: (key: string) => `${key}PC`,
+    pascalCase: true
+  });
+}
+
+/**
+ * Adds custom or computed values with a changed case
+ * @param data given yo questions and answers object
+ * @param options options object
+ * @param options.fields An array of property names to create camelcased values from
+ * @param options.keyFunc A function that generates the name for the newly created properties. Appends `CC` by default.
+ * @param options.pascalCase Whether to use pascal case (capitalized first letter)
+ * @return new, extended yo questions and answers object
+ */
+export function addCasedVariants(
+  data: GeneratorOptions,
+  {
+    fields,
+    keyFunc,
+    pascalCase
+  }: {
+    fields: string[];
+    keyFunc: (key: string) => string;
+    pascalCase?: boolean;
+  }
 ): GeneratorOptions {
   const result = {
-    ...generatorOptions,
+    ...data,
     ...fields.reduce((result, key) => {
-      if (!generatorOptions[key]) {
+      if (!data[key]) {
         return result;
       }
+      const value = data[key].replace('@', '_').replace('/', '--');
       return {
         ...result,
-        [keyFunc(key)]: camelcase(generatorOptions[key])
+        [keyFunc(key)]: camelcase(value, { pascalCase })
       };
     }, {})
   };

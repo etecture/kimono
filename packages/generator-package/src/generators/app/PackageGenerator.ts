@@ -69,7 +69,10 @@ export default class PackageGenerator extends Generator {
     result.packageScope = packageScope;
 
     // some values must be computed or derived based on the given values
-    result = questionUtils.addCamelCased(result, ['projectName', 'packageName', 'packageScope']);
+    // TODO make this controllable, e.g. option with default
+    const variantFields = ['projectName', 'packageName', 'packageScope'];
+    result = questionUtils.addCamelCased(result, variantFields);
+    result = questionUtils.addPascalCased(result, variantFields);
 
     // package.json repository
     if (result.repositoryType || result.repositoryUrl) {
