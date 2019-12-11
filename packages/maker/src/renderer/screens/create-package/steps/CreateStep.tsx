@@ -82,7 +82,7 @@ const ControlButtons: React.FC<CreateStepProps> = props => (
 const Summary: React.FC<CreateStepProps> = props => (
   <ul>
     <li>
-      location: <code>{props.values.cwd}</code>
+      location: <code>{props.values.dest}</code>
     </li>
     <li>
       {process.env.NODE_ENV === 'development' ? (
@@ -91,7 +91,7 @@ const Summary: React.FC<CreateStepProps> = props => (
         </span>
       ) : null}
       <span>
-        command: <code> {createCLICommand(props.values, ['cwd'])} </code>
+        command: <code> {createCLICommand(props.values, ['dest'])} </code>
       </span>
     </li>
   </ul>
@@ -102,12 +102,9 @@ const Finished: React.FC<CreateStepProps> = props => (
     <button
       className="button"
       onClick={() => {
-        shell.openExternalSync(
-          path.resolve(props.values.cwd, props.values.packageScope || '', props.values.packageName!),
-          {
-            activate: true
-          }
-        );
+        shell.openExternalSync(path.resolve(props.values.dest, props.values.packageName!), {
+          activate: true
+        });
       }}
     >
       Open folder

@@ -5,7 +5,7 @@ import Generator from 'yeoman-generator';
 import yosay from 'yosay';
 
 import { createTransformStream, createIgnoreGlobs, getFilePath, renderPath } from '@kimono/yo-transform-filenames';
-import { binaryUtils, questionUtils, packageUtils } from '@kimono/yo-utils';
+import { binaryUtils, questionUtils, packageUtils, fsUtils } from '@kimono/yo-utils';
 
 import { options as appOptions } from './options';
 import { PackageGeneratorOptions } from '../../types';
@@ -177,12 +177,11 @@ export default class PackageGenerator extends Generator {
 
   end() {
     this._formatPackageJson();
-    const context = this.templateVars!;
 
     const messages = [
       'All right!',
       'Your package was created - have a look:',
-      `cd ${packageUtils.splitName(context.projectName!).packageName}`
+      `cd ${fsUtils.forwardSlashes(this.destinationPath())}`
     ];
     const message = messages.filter(Boolean).join('\n');
 

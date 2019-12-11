@@ -22,7 +22,6 @@ export const CreatePackageScreen: React.FC<{ onDone: () => void }> = () => {
 
   const handleSubmitForm = React.useCallback(
     (values: FormValues) => {
-      console.log({ values });
       setValues(values);
       history.push('/create-package/create');
     },
@@ -30,10 +29,14 @@ export const CreatePackageScreen: React.FC<{ onDone: () => void }> = () => {
   );
 
   const handleStart = React.useCallback(() => {
-    const { cwd, ...values } = getValues();
+    const values = getValues();
     setFinished(false);
     setBusy(true);
-    execute(createCLICommand(values), { cwd });
+    if (process.env.NODE_ENV === 'production') {
+      execute(createCLICommand(values, ['dest']), { cwd: values.dest });
+    } else {
+      execute(createCLICommand(values));
+    }
   }, [execute]);
 
   const handleKill = React.useCallback(() => {

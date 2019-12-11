@@ -1,5 +1,5 @@
 import path from 'path';
-import { packageUtils } from '@kimono/yo-utils';
+import { packageUtils, fsUtils } from '@kimono/yo-utils';
 import { options } from '@kimono/generator-package/lib/generators/app/options';
 import findWorkspaceRoot from 'find-yarn-workspace-root';
 import { FormValues } from './form-schema';
@@ -62,8 +62,10 @@ export function createCLICommand(values: Partial<FormValues>, ignoredKeys?: stri
   if (process.env.NODE_ENV === 'development') {
     const workspaceRoot = findWorkspaceRoot();
     if (workspaceRoot) {
-      const scriptPath = path.resolve(workspaceRoot, 'packages/create-package/lib/index.js');
-      return `node ${scriptPath.replace(/\\/g, '/')} ${projectName} ${args.join(' ')}`;
+      let scriptPath = path.resolve(workspaceRoot, 'packages/create-package/lib/index.js');
+      // scriptPath = path.relative(process.cwd(), scriptPath);
+      scriptPath = fsUtils.forwardSlashes(scriptPath);
+      return `node ${scriptPath} ${projectName} ${args.join(' ')}`;
     } else {
       console.warn('>> unable to find workspace root');
     }

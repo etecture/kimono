@@ -4,7 +4,7 @@ import { KeyValueItem } from '@kimono/xpty';
 export interface FormValues {
   verbose: boolean;
   tpl: string;
-  cwd: string;
+  dest: string;
   projectName: string;
   packageName?: string;
   packageScope?: string;
@@ -33,7 +33,7 @@ const alphanumeric = {
 };
 
 export const ValidationSchema = Yup.object().shape({
-  cwd: Yup.string().required('Required'),
+  dest: Yup.string().required('Required'),
   packageName: Yup.string()
     .required('Required')
     .matches(alphanumeric.regex, alphanumeric.message),

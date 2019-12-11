@@ -34,18 +34,18 @@ export const ConfigureStep: React.FC<{
             <section>
               <h5>General</h5>
 
-              <FormField horizontal label={'Project location'} error={getError('cwd')}>
+              <FormField horizontal label={'Destination folder'} error={getError('dest')}>
                 <FormikFileInput
-                  placeholder="Folder in which to create the project"
-                  name="cwd"
+                  placeholder="(Optional) Location of the folder in which to create the package"
+                  name="dest"
                   openDirectory
                   openFile={false}
                 />
               </FormField>
 
-              <FormField horizontal label={'Custom template'} error={getError('tpl')}>
+              <FormField horizontal label={'Template folder'} error={getError('tpl')}>
                 <FormikFileInput
-                  placeholder="Location of the template folder to use"
+                  placeholder="(Optional) Location of the template folder to use"
                   name="tpl"
                   openDirectory
                   openFile={false}
