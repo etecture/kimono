@@ -17,7 +17,7 @@
     "clean": "lerna run clean --stream --parallel",
     "test": "lerna run test --stream",
     "test:watch": "lerna run test:watch --stream",
-    "test:run": "cross-env DEBUG=yeoman:generator packages/create-electron-app/lib/index.js ../foo",
+    "test:run": "cross-env DEBUG=yeoman:generator packages/create-electron-app/lib/index.js",
     "test:pkg": "cross-env DEBUG=yeoman:generator packages/create-package/lib/index.js",
     "maker": "cd packages/maker && yarn start",
     "lint": "lerna run lint --stream"

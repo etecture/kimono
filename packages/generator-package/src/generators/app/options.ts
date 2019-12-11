@@ -14,6 +14,12 @@ export const options: GeneratorOption[] = [
     description: 'tpl: (Optional) Location of custom template'
   },
   {
+    name: 'dest',
+    alias: 'd',
+    type: String,
+    description: 'out: (Optional) Destination path in which to create the package'
+  },
+  {
     name: 'verbose',
     alias: 'v',
     default: false,

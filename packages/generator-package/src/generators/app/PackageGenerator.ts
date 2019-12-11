@@ -5,7 +5,7 @@ import Generator from 'yeoman-generator';
 import yosay from 'yosay';
 
 import { createTransformStream, createIgnoreGlobs, getFilePath, renderPath } from '@kimono/yo-transform-filenames';
-import { binaryUtils, questionUtils, packageUtils, fsUtils } from '@kimono/yo-utils';
+import { binaryUtils, questionUtils, packageUtils } from '@kimono/yo-utils';
 
 import { options as appOptions } from './options';
 import { PackageGeneratorOptions } from '../../types';
@@ -49,8 +49,13 @@ export default class PackageGenerator extends Generator {
 
     this.templateVars = this._finalizeContext(this.templateVars!);
 
-    // set target folder, but only use the package name part, ignoring the scope part
-    this.destinationRoot(packageUtils.splitName(this.templateVars.projectName!).packageName);
+    if (this.templateVars.dest) {
+      if (this.templateVars.dest.startsWith('.')) {
+        this.templateVars.dest = path.resolve(process.cwd(), this.templateVars.dest);
+      }
+      fs.ensureDirSync(path.resolve(this.templateVars.dest));
+    }
+    this.destinationRoot(path.resolve(this.templateVars.dest || '', this.templateVars.packageName!));
   }
 
   _finalizeContext(context: PackageGeneratorOptions): PackageGeneratorOptions {
@@ -64,7 +69,7 @@ export default class PackageGenerator extends Generator {
     result.packageScope = packageScope;
 
     // some values must be computed or derived based on the given values
-    result = questionUtils.addCamelCased(result, ['projectName']);
+    result = questionUtils.addCamelCased(result, ['projectName', 'packageName', 'packageScope']);
 
     // package.json repository
     if (result.repositoryType || result.repositoryUrl) {
@@ -158,7 +163,7 @@ export default class PackageGenerator extends Generator {
   }
 
   _formatPackageJson() {
-    const filePath = fsUtils.forwardSlashes(path.resolve(this.destinationPath('package.json')));
+    const filePath = path.resolve(this.destinationPath('package.json'));
     if (fs.pathExistsSync(filePath)) {
       // re-format package.json
       this.fs.write(filePath, JSON.stringify(require(filePath), null, 2));

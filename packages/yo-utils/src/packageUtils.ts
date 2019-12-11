@@ -28,8 +28,6 @@ export function normalizePackageName(name: string): string {
   if (!name) {
     return name;
   }
-  // remove ../
-  name = name.replace(/\.\.(\/|\\)/g, '');
   let { packageScope, packageName } = splitName(name);
 
   // user provided foo/bar instead of @foo/bar
