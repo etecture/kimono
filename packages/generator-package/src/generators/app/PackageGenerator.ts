@@ -56,8 +56,12 @@ export default class PackageGenerator extends Generator {
   _finalizeContext(context: PackageGeneratorOptions): PackageGeneratorOptions {
     let result = { ...context };
 
+    // normalize projectName, packageName and packageScope
     result = questionUtils.applyImplicitOptions(result);
     result.projectName = packageUtils.normalizePackageName(result.projectName!);
+    const { packageName, packageScope } = packageUtils.splitName(result.projectName!);
+    result.packageName = packageName;
+    result.packageScope = packageScope;
 
     // some values must be computed or derived based on the given values
     result = questionUtils.addCamelCased(result, ['projectName']);

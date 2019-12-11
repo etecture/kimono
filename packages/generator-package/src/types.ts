@@ -1,6 +1,8 @@
 export interface PackageGeneratorOptions {
   tpl?: string;
   projectName?: string;
+  packageName?: string;
+  packageScope?: string;
   description?: string;
   yes?: boolean;
   verbose?: boolean;
