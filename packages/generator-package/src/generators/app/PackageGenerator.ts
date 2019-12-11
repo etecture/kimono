@@ -60,9 +60,16 @@ export default class PackageGenerator extends Generator {
 
   _finalizeContext(context: PackageGeneratorOptions): PackageGeneratorOptions {
     let result = { ...context };
-
     // normalize projectName, packageName and packageScope
     result = questionUtils.applyImplicitOptions(result);
+
+    if (result.packageScope) {
+      // explicit scope override
+      const { packageName } = packageUtils.splitName(result.projectName!);
+      const packageScope = result.packageScope;
+      result.projectName = packageUtils.joinName({ packageScope, packageName });
+    }
+
     result.projectName = packageUtils.normalizePackageName(result.projectName!);
     const { packageName, packageScope } = packageUtils.splitName(result.projectName!);
     result.packageName = packageName;
@@ -190,7 +197,7 @@ export default class PackageGenerator extends Generator {
     const filePath = path.resolve(this.destinationPath('package.json'));
     if (fs.pathExistsSync(filePath)) {
       // re-format package.json
-      this.fs.write(filePath, JSON.stringify(require(filePath), null, 2));
+      fs.writeFileSync(filePath, JSON.stringify(require(filePath), null, 2));
     } else {
       console.warn('>> package.json not found in output directory!', filePath);
     }

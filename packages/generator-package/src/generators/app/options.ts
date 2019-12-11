@@ -40,8 +40,12 @@ export const options: GeneratorOption[] = [
     description: 'yarn: Use yarn instead of npm?'
   },
   {
+    name: 'packageScope',
+    type: String,
+    description: 'packageScope: If provided, it will override the scope given via projectName'
+  },
+  {
     name: 'symlink',
-    alias: 's',
     type: String,
     description: 'symlink: Path to a folder into which to create a symlink to the new package'
   },
