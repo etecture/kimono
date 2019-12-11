@@ -1,0 +1,13 @@
+export function <%= packageNameCC %>() {
+  console.log({
+    projectName: '<%= projectName %>',
+    packageScope: '<%= packageScope %>',
+    packageName: '<%= packageName %>',
+    projectNameCC: '<%= projectNameCC %>',
+    packageScopeCC: '<%= packageScopeCC %>',
+    packageNameCC: '<%= packageNameCC %>',
+    projectNamePC: '<%= projectNamePC %>',
+    packageScopePC: '<%= packageScopePC %>',
+    packageNamePC: '<%= packageNamePC %>',
+  });
+};
