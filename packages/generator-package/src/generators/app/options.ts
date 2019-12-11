@@ -42,7 +42,6 @@ export const options: GeneratorOption[] = [
   //------------------
   {
     name: 'private',
-    default: true,
     type: Boolean,
     description: 'Whether the package should be private and never published to the registry'
   },
