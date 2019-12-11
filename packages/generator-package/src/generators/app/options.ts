@@ -40,9 +40,9 @@ export const options: GeneratorOption[] = [
     description: 'yarn: Use yarn instead of npm?'
   },
   {
-    name: 'packageScope',
+    name: 'scope',
     type: String,
-    description: 'packageScope: If provided, it will override the scope given via projectName'
+    description: 'scope: If provided, it will override the scope given via projectName'
   },
   {
     name: 'symlink',

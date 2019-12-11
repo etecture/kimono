@@ -50,6 +50,11 @@ export default class PackageGenerator extends Generator {
       process.exit(1);
     }
 
+    if (this.options.scope) {
+      // special override via --scope
+      this.templateVars.packageScope = this.options.scope;
+    }
+
     this.templateVars = this._finalizeContext(this.templateVars!);
     if (this.templateVars.dest) {
       fs.ensureDirSync(path.resolve(this.templateVars.dest));
@@ -60,7 +65,7 @@ export default class PackageGenerator extends Generator {
 
   _finalizeContext(context: PackageGeneratorOptions): PackageGeneratorOptions {
     let result = { ...context };
-    // normalize projectName, packageName and packageScope
+
     result = questionUtils.applyImplicitOptions(result);
 
     if (result.packageScope) {
