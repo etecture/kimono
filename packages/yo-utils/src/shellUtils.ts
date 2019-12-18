@@ -1,6 +1,6 @@
 import util from 'util';
 import fs from 'fs-extra';
-
+import sanitize from 'filenamify';
 import path from 'path';
 import os from 'os';
 
@@ -20,7 +20,7 @@ export function run(cmd: string, args = { stdio: 'inherit', shell: true }): Prom
   });
 }
 
-export function createTempDir(name: string): string {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), `${name.replace(/\//g, '--')}--`));
+export function createTempDir(name: string = ''): string {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), name ? `${sanitize(name)}--` : ''));
   return path.resolve(tempDir);
 }
