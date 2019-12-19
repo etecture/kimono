@@ -94,10 +94,7 @@ export function addCasedVariants(
   const result = {
     ...data,
     ...fields.reduce((result, key) => {
-      if (!data[key]) {
-        return result;
-      }
-      const value = data[key].replace('@', '_').replace('/', '--');
+      const value = (data[key] && data[key].replace('@', '_').replace('/', '--')) || '';
       return {
         ...result,
         [keyFunc(key)]: camelcase(value, { pascalCase })
