@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import glob, { IOptions } from 'glob';
+import parseGitignore from 'parse-gitignore';
 
 export const forwardSlashes = (value: string) => value.replace(/\\/g, '/');
 
@@ -88,3 +89,61 @@ export async function loadJSON(file: string): Promise<Record<string, any> | null
 
   return null;
 }
+
+/**
+ * @param gitignore absolute path to gitignore file
+ * @param cwd optional cwd. defaults to the path of `gitignore` parent dir
+ * @return an array of filenames that matched
+ */
+export async function resolveGitIgnoredFiles(
+  gitignore: string,
+  cwd: string = path.dirname(gitignore)
+): Promise<string[]> {
+  if (!fs.existsSync(path.resolve(gitignore))) {
+    return [];
+  }
+  const fileContents = await fs.readFile(path.resolve(gitignore), 'utf8');
+  return resolveGlobs(parseGitignore(fileContents), { cwd });
+}
+
+// ---------------------------------------------------------
+//
+// getting files recursively
+// based on https://stackoverflow.com/a/53133633/368254
+//
+// we need this because globbing the .git folder is troublesome for some reasons
+//
+// ---------------------------------------------------------
+
+export function getAllSubFolders(baseFolder: string, folderList: string[] = []): string[] {
+  const folders: string[] = fs
+    .readdirSync(baseFolder)
+    .filter(file => fs.statSync(path.join(baseFolder, file)).isDirectory());
+  folders.forEach(folder => {
+    folderList.push(path.join(baseFolder, folder));
+    getAllSubFolders(path.join(baseFolder, folder), folderList);
+  });
+  return folderList;
+}
+
+export function getFilesInFolder(rootPath: string): string[] {
+  if (!fs.existsSync(rootPath)) {
+    return [];
+  }
+  return fs
+    .readdirSync(rootPath)
+    .filter(filePath => !fs.statSync(path.join(rootPath, filePath)).isDirectory())
+    .map(filePath => path.normalize(path.join(rootPath, filePath)));
+}
+
+export function getFilesRecursively(rootPath: string): string[] {
+  if (!fs.existsSync(rootPath)) {
+    return [];
+  }
+  return getAllSubFolders(rootPath).reduce(
+    (result, folder) => [...result, ...getFilesInFolder(folder)],
+    [] as string[]
+  );
+}
+
+// ---------------------------------------------------------
